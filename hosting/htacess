@@ -1,0 +1,22 @@
+# Redirect 301 from non www to www HTTPS
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ https://www.dodylesmana.com%{REQUEST_URI} [L,NE,R=301]
+
+# Redirect 301 from www to non www HTTPS
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://dodylesmana.com%{REQUEST_URI} [L,NE,R=301]
+
+# Useless header server
+Header unset expires
+Header unset server
+Header unset strict-transport-security
+Header unset x-litespeed-cache
+Header unset x-powered-by
+Header unset x-ua-compatible
+
+# No index header server for certain files
+RewriteCond %{REQUEST_URI} (\.htm|\.html|\.txt|\.xml|\.php) [NC]
+RewriteRule .* - [E=NOINDEX_HEADER:1]
+Header set x-robots-tag "noindex, noarchive, nosnippet" env=NOINDEX_HEADER
