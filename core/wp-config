@@ -1,0 +1,2 @@
+# Remove foot print in HTML, result caching LiteSpeed Cache
+define('LSCACHE_ESI_SILENCE', true);
