@@ -1,0 +1,2 @@
+# Remove microdata or schema default
+add_filter('kadence_microdata', '__return_false' );
