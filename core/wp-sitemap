@@ -1,0 +1,24 @@
+# Remove category, tag, and user from default sitemap WordPress.
+
+# Remove category & tag
+add_filter(
+    'wp_sitemaps_taxonomies',
+    function( $taxonomies ) {
+		unset( $taxonomies['category'] );		
+        unset( $taxonomies['post_tag'] );
+        return $taxonomies;
+    }
+);
+# Remove user
+add_filter(
+    'wp_sitemaps_add_provider',
+    function( $provider, $name ) {
+        if ( 'users' === $name ) {
+            return false;
+        }
+ 
+        return $provider;
+    },
+    10,
+    2
+);
