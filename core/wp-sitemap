@@ -4,11 +4,12 @@
 add_filter(
     'wp_sitemaps_taxonomies',
     function( $taxonomies ) {
-		unset( $taxonomies['category'] );		
+	unset( $taxonomies['category'] );		
         unset( $taxonomies['post_tag'] );
         return $taxonomies;
     }
 );
+
 # Remove user
 add_filter(
     'wp_sitemaps_add_provider',
@@ -16,7 +17,6 @@ add_filter(
         if ( 'users' === $name ) {
             return false;
         }
- 
         return $provider;
     },
     10,
